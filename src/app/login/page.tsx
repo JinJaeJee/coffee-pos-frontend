@@ -7,7 +7,12 @@ const loginPage = () => {
       <section className="min-h-screen flex justify-center items-center bg-green-50">
         <div className="bg-white flex rounded-2xl shadow-lg max-w-5xl p-5">
           <div className="w-1/2">
-            <img className="rounded-2xl" src="/coffee-bg-login.jpg" />
+            <Image
+              src="/coffee-bg-login.jpg"
+              alt="Picture of the author"
+              width={700}
+              height={700}
+            />
           </div>
           <div className="flex items-center ju w-1/2">
             <div className="max-w-md mx-auto">
@@ -31,9 +36,9 @@ const loginPage = () => {
                     Username
                   </label>
                   <input
-                    type="email"
-                    id="email"
-                    name="email"
+                    type="username"
+                    id="username"
+                    name="username"
                     required
                     className="w-full p-2 border rounded-md mt-1"
                   />
