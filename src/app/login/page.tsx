@@ -14,7 +14,7 @@ const loginPage = () => {
               height={700}
             />
           </div>
-          <div className="flex items-center ju w-1/2">
+          <div className="flex items-center w-1/2">
             <div className="max-w-md mx-auto">
               <div className="flex items-start justify-center mb-4">
                 <Image

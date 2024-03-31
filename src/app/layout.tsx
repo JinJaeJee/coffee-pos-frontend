@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Sarabun } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const sarabun = Sarabun({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "POS for coffee cafe",
@@ -16,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={sarabun.className}>{children}</body>
     </html>
   );
 }
