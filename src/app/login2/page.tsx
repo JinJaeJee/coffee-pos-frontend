@@ -1,8 +1,25 @@
 "use client";
+import { Form, Formik } from "formik";
 import Image from "next/image";
 import React from "react";
+import * as Yup from "yup";
 
-const login2Page = () => {
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .required("โปรดกรอกEmail")
+    .email("รูปแบบอีเมลที่กรอกไม่ถูกต้อง"),
+  password: Yup.string().required("รหัสผ่านไม่ถูกต้อง"),
+});
+
+type Props = {
+  searchParams?: Record<"callbackUrl" | "error", string>;
+};
+
+const login2Page = ({ searchParams }: Props) => {
+  const initialValues = {
+    email: "",
+    password: "",
+  };
   return (
     <div>
       <div className="bg-gray-200 flex items-center justify-center min-h-screen">
@@ -17,15 +34,30 @@ const login2Page = () => {
             />
           </div>
           <div className="flex justify-center items-center w-[70%]">
-            <div>
-              <h1>Welcome to my Studio</h1>
-              <form>
-                <div>
-                  <label htmlFor="Username"></label>
-                  <input />
-                </div>
-              </form>
-            </div>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={() => {}}
+              validationSchema={validationSchema}
+            >
+              {({ isValid }) => (
+                <Form>
+                  <div>
+                    <div>Logo</div>
+                    <div>Welcome Folks</div>
+                    <div>This is coffee cafe cashier helper</div>
+                  </div>
+
+                  {/*/** this is form input */}
+                  <div>
+                    {searchParams?.error ? (
+                      <div> Username หรือ Password ไม่ถูกต้อง</div>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
       </div>
