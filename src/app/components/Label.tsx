@@ -6,7 +6,7 @@ type Props = {
 };
 const Label = ({ label, require }: Props) => {
   return (
-    <div className="font-normal text-base text-gray-600 flex items-center h-full">
+    <div className="font-normal text-base text-gray-600 flex items-center h-full mt-2">
       {label}
       {require ? <span className="text-red-500">*</span> : null}
     </div>

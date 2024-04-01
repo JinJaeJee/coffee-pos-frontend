@@ -1,82 +1,110 @@
+"use client";
+import { Form, Formik } from "formik";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import * as Yup from "yup";
+import Label from "../components/Label";
+import InputField from "../components/InputField";
+import Buttons from "../components/Buttons";
 
-const loginPage = () => {
+const validationSchema = Yup.object().shape({
+  username: Yup.string().required("โปรดกรอก username"),
+  password: Yup.string().required("รหัสผ่านไม่ถูกต้อง"),
+});
+
+type Props = {
+  searchParams?: Record<"callbackUrl" | "error", string>;
+};
+
+const LoginPage = ({ searchParams }: Props) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const initialValues = {
+    email: "",
+    password: "",
+  };
   return (
-    <div>
-      <section className="min-h-screen flex justify-center items-center bg-green-50">
-        <div className="bg-white flex rounded-2xl shadow-lg max-w-5xl p-5">
-          <div className="w-1/2">
+    <div className="relative object-cover w-screen h-screen overflow-hidden bg-no-repeat bg-cover bg-bg-login">
+      <div className="bg-gray-200 flex items-center justify-center min-h-screen">
+        <div className="bg-white shadow-lg p-4 flex rounded-2xl">
+          <div className="w-[50%] rounded-3xl p-5 m-5">
             <Image
               src="/coffee-bg-login.jpg"
               alt="Picture of the author"
-              width={700}
-              height={700}
+              width={900}
+              height={900}
+              className="rounded-2xl"
             />
           </div>
-          <div className="flex items-center w-1/2">
-            <div className="max-w-md mx-auto">
-              <div className="flex items-start justify-center mb-4">
-                <Image
-                  src="/coffee-logo.png"
-                  alt="Picture of the author"
-                  width={150}
-                  height={150}
-                />
-              </div>
-              <h1 className="flex justify-center">Welcome Back</h1>
-              <p className="text-center text-[12px] my-4"></p>
+          <div className="flex justify-center items-center w-[70%]">
+            <Formik
+              initialValues={initialValues}
+              onSubmit={() => {}}
+              validationSchema={validationSchema}
+            >
+              {({ isValid }) => (
+                <Form className="flex flex-col justify-center gap-5">
+                  <div className="flex flex-col items-center justify-center">
+                    <div>
+                      <Image
+                        src="/coffee-logo.png"
+                        alt="Picture of the author"
+                        width={100}
+                        height={100}
+                        className="rounded-2xl "
+                      />
+                    </div>
+                    <div>Welcome Folks</div>
+                    <div>This is coffee cafe cashier helper</div>
+                  </div>
 
-              <form className="space-y-6">
-                <div>
-                  <label
-                    htmlFor="Username"
-                    className="text-sm font-medium text-gray-700"
-                  >
-                    Username
-                  </label>
-                  <input
-                    type="username"
-                    id="username"
-                    name="username"
-                    required
-                    className="w-full p-2 border rounded-md mt-1"
+                  {/*/** this is form input */}
+                  <div className="flex flex-col">
+                    {searchParams?.error ? (
+                      <div className="my-3 text-center bg-red-100 rounded-md text-red">
+                        Username หรือ Password ไม่ถูกต้อง
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+
+                    <Label label="Username" require />
+                    <InputField value="username" type="text" />
+                    <Label label="รหัสผ่าน" require />
+                    <InputField
+                      value="password"
+                      type={showPassword ? "text" : "password"}
+                    />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <input
+                      className="text-black"
+                      type="checkbox"
+                      checked={showPassword}
+                      onChange={() => setShowPassword(!showPassword)}
+                    />
+                    <label>แสดงรหัสผ่าน</label>
+                  </div>
+                  <Buttons
+                    type="submit"
+                    color="black"
+                    title="เข้าสู่ระบบ"
+                    className="w-full"
+                    disabled={!isValid}
                   />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="password"
-                    className="text-sm font-medium text-gray-700"
-                  >
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    required
-                    className="w-full p-2 border rounded-md mt-1"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full p-2 bg-green-600 text-white rounded hover:bg-green-700"
-                >
-                  Log In
-                </button>
-              </form>
-
-              <div className="text-center text-sm mt-8">
-                มีปัญหาโปรดติดต่อ เทพอ้วน <span>0929888742</span>
-              </div>
-            </div>
+                  <p className="text-base font-normal text-center text-just-service-text-gray">
+                    หากเกิดข้อผิดพลาดหรือความขัดข้องในการใช้งานระบบ
+                    <br />
+                    โทรติดต่อ 089-2746385 หรือ
+                    <br /> อีเมล Contactjust@justcar.co.th
+                  </p>
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };
 
-export default loginPage;
+export default LoginPage;

@@ -28,7 +28,7 @@ const InputField = ({
     [onChange, setFieldValue, value]
   );
   return (
-    <div>
+    <div className="flex flex-col">
       <Field
         type={type}
         id={value}
@@ -36,7 +36,9 @@ const InputField = ({
         placeholder={placeholder}
         min={0}
         defaulValue={defaulValue}
-        className={``}
+        className={`block focus:border-black border-2 border-gray-300 focus:outline-none appearance-none focus:ring-0 text-base text-black font-medium ${
+          touched[value] && errors[value] ? "border-red-500" : ""
+        }`}
         onChange={handleOnChange}
       />
 
