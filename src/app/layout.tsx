@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Sarabun } from "next/font/google";
 import "./globals.css";
+import Providers from "./components/Provider";
+import SideNav from "./components/SideNav";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 const sarabun = Sarabun({
@@ -16,12 +19,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={sarabun.className}>{children}</body>
+      <body className={sarabun.className}>
+        <Providers>
+          <SideNav>{children}</SideNav>
+        </Providers>
+        <ToastContainer hideProgressBar />
+      </body>
     </html>
   );
 }

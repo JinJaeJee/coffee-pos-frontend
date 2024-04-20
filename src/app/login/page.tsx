@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import Label from "../components/Label";
 import InputField from "../components/InputField";
 import Buttons from "../components/Buttons";
+import { signIn } from "next-auth/react";
+import { LoginInput } from "../libs/types";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("โปรดกรอก username"),
@@ -19,14 +21,25 @@ type Props = {
 const LoginPage = ({ searchParams }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
   const initialValues = {
-    email: "",
+    username: "",
     password: "",
   };
+
+  const handleSubmit = async (values: LoginInput) => {
+    console.log(values);
+    await signIn("credentials", {
+      username: values.username,
+      password: values.password,
+      redirect: true,
+      callbackUrl: process.env.NEXTAUTH_URL,
+    });
+  };
+
   return (
     <div className="relative object-cover w-screen h-screen overflow-hidden bg-no-repeat bg-cover bg-bg-login">
       <div className="bg-gray-200 flex items-center justify-center min-h-screen">
         <div className="bg-white shadow-lg p-4 flex rounded-2xl">
-          <div className="w-[50%] rounded-3xl p-5 m-5">
+          <div className="w-[50%] rounded-3xl ">
             <Image
               src="/coffee-bg-login.jpg"
               alt="Picture of the author"
@@ -35,10 +48,10 @@ const LoginPage = ({ searchParams }: Props) => {
               className="rounded-2xl"
             />
           </div>
-          <div className="flex justify-center items-center w-[70%]">
+          <div className="flex justify-center items-center w-[70%] ">
             <Formik
               initialValues={initialValues}
-              onSubmit={() => {}}
+              onSubmit={handleSubmit}
               validationSchema={validationSchema}
             >
               {({ isValid }) => (
@@ -54,7 +67,7 @@ const LoginPage = ({ searchParams }: Props) => {
                       />
                     </div>
                     <div>Welcome Folks</div>
-                    <div>This is coffee cafe cashier helper</div>
+                    <div>This is coffee cafe helper</div>
                   </div>
 
                   {/*/** this is form input */}
@@ -94,8 +107,8 @@ const LoginPage = ({ searchParams }: Props) => {
                   <p className="text-base font-normal text-center text-just-service-text-gray">
                     หากเกิดข้อผิดพลาดหรือความขัดข้องในการใช้งานระบบ
                     <br />
-                    โทรติดต่อ 089-2746385 หรือ
-                    <br /> อีเมล Contactjust@justcar.co.th
+                    โทรติดต่อ 099-9999999 หรือ
+                    <br /> อีเมล coffee@cafe.co.th
                   </p>
                 </Form>
               )}

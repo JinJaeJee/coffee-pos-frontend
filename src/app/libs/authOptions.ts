@@ -1,7 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions } from "next-auth";
 import createCustomAxios from "./customAxios";
-import { use } from "react";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -27,15 +26,14 @@ export const authOptions: NextAuthOptions = {
             username,
             password,
           });
+
           if (res.status === 401) {
             console.log(res.statusText);
             return null;
           }
 
-          const user = await res.data;
-
-          if (user.code === 1) {
-            return user.data;
+          if (res) {
+            return res.data;
           } else {
             return null;
           }
@@ -46,12 +44,14 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  ////// wait for  route signin
   pages: {
-    signIn: "/signin",
+    signIn: "/login",
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) return { ...token, ...user };
+      console.log("jwt", token, user);
       return token;
     },
     async session({ token, session }) {
