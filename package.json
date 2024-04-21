@@ -20,6 +20,7 @@
     "numeral": "^2.0.6",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^5.1.0",
     "react-toastify": "^10.0.5",
     "yup": "^1.4.0"
   },

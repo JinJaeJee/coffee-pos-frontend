@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Sarabun } from "next/font/google";
 import "./globals.css";
 import Providers from "./components/Provider";
-import SideNav from "./components/SideNav";
+
 import { ToastContainer } from "react-toastify";
+import NavSide from "./components/NavSide";
 
 const inter = Inter({ subsets: ["latin"] });
 const sarabun = Sarabun({
@@ -26,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={sarabun.className}>
         <Providers>
-          <SideNav>{children}</SideNav>
+          <NavSide>{children}</NavSide>
         </Providers>
         <ToastContainer hideProgressBar />
       </body>
