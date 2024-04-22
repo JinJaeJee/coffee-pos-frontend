@@ -1,0 +1,11 @@
+.textSideMenu {
+  @apply flex text-black hover:bg-gray-500 w-full text-base font-medium h-12 items-center px-3;
+}
+
+.textSideMenuCurrent {
+  @apply flex text-white bg-black hover:bg-gray-500 w-full text-base font-medium h-12 items-center px-3;
+}
+
+.textSideMenuCategory {
+  @apply flex px-3 text-gray-500 font-normal text-sm items-center my-2;
+}

@@ -8,6 +8,9 @@ const nextConfig = {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     API_URL: process.env.API_URL,
   },
+  images: {
+    domains: ["flowbite.com"],
+  },
 };
 
 export default nextConfig;
