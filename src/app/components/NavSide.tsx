@@ -136,16 +136,12 @@ const NavSide = (props: Props) => {
             </div>
             <div className="h-[calc(100vh-64px)] flex flex-row">
               <Sidebar />
-              <div className=" w-full overflow-y-scroll no-scrollbar p-3">
-                {props.children}
-              </div>
+              <div className=" w-full">{props.children}</div>
             </div>
           </>
         ) : (
           // <Loading />
-          <div className=" w-full overflow-y-scroll no-scrollbar">
-            {props.children}
-          </div>
+          <div className=" w-full">{props.children}</div>
         )}
       </div>
     </div>
