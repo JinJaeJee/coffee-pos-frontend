@@ -86,6 +86,7 @@ const HomePage = () => {
             totalPages={10}
             onNextClick={() => {}}
             onBackClick={() => {}}
+            onPageChange={() => {}}
           />
         </div>
       </div>

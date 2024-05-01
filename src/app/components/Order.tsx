@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { IoMdAdd, IoMdPersonAdd } from "react-icons/io";
 import { IoTrashBinSharp } from "react-icons/io5";
+import OrderList from "./OrderList";
 
 const Order = () => {
   const [isMember, setIsmember] = useState(false);
@@ -34,8 +35,9 @@ const Order = () => {
               </div>
             </div>
           )}
-          <div className="flex justify-center pt-4">
-            .......................................................................................................................
+          <div className="flex justify-center border-dotted border-b-2 border-black pt-4"></div>
+          <div className="pt-4">
+            <OrderList />
           </div>
         </div>
       </div>
