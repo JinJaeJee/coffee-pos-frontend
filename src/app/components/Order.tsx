@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { IoMdAdd, IoMdPersonAdd } from "react-icons/io";
+import { IoMdPersonAdd } from "react-icons/io";
 import { IoTrashBinSharp } from "react-icons/io5";
 import OrderList from "./OrderList";
 

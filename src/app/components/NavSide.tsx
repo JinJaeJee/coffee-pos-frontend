@@ -9,12 +9,14 @@ import Link from "next/link";
 import { RxDividerVertical } from "react-icons/rx";
 import { IoMdArrowDropdown } from "react-icons/io";
 import Sidebar from "./Sidebar";
+import CurrentTimeComponent from "./CurrentTime";
 
 type Props = {
   children: any;
 };
 
 const NavSide = (props: Props) => {
+  const currentDate = new Date().toLocaleDateString("th");
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [session, setSession] = useState<any | null>(null);
 
@@ -47,7 +49,7 @@ const NavSide = (props: Props) => {
                 <div>
                   <MdDateRange size={30} />
                 </div>
-                <p>April 21st 2024, 10:00AM</p>
+                <CurrentTimeComponent /> {/** April 21st 2024, 10:00AM*/}
                 <div className="flex items-center">
                   <div className="relative">
                     <div className="flex flex-row gap-5 items-center ">

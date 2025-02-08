@@ -10,7 +10,7 @@ import { signIn } from "next-auth/react";
 import { LoginInput } from "../libs/types";
 
 const validationSchema = Yup.object().shape({
-  username: Yup.string().required("โปรดกรอก username"),
+  email: Yup.string().required("โปรดกรอก username"),
   password: Yup.string().required("รหัสผ่านไม่ถูกต้อง"),
 });
 
@@ -21,14 +21,14 @@ type Props = {
 const LoginPage = ({ searchParams }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
   const initialValues = {
-    username: "",
+    email: "",
     password: "",
   };
 
   const handleSubmit = async (values: LoginInput) => {
     console.log(values);
     await signIn("credentials", {
-      username: values.username,
+      email: values.email,
       password: values.password,
       redirect: true,
       callbackUrl: process.env.NEXTAUTH_URL,
@@ -80,8 +80,8 @@ const LoginPage = ({ searchParams }: Props) => {
                       <></>
                     )}
 
-                    <Label label="Username" require />
-                    <InputField value="username" type="text" />
+                    <Label label="Email" require />
+                    <InputField value="email" type="text" />
                     <Label label="รหัสผ่าน" require />
                     <InputField
                       value="password"
